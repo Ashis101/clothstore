@@ -1,0 +1,6 @@
+exports.user=(req,res,next)=>{
+        if(!req.session.login){
+            res.redirect('/login')
+        }
+    next()
+}

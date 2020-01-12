@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+    <%- include('../layout/head.ejs') %>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <%- include('../layout/navbar.ejs') %>
+<main>
+    <%if(product.length > 0){%>
+    <div class="container">
+        <%for(let x of product){%>
+        <div class="card">
+            
+            <h1><%=x.productid.title%></h1>
+            <p class="price"><%= x.quantity%></p>
+            <form action="/cart-delete" method="POST">
+                <input type="hidden" value="<%= x.productid._id %>" name="productId">
+                <input type="hidden" name="_csrf" value="<%= csrf %>">
+                <button type="submit">Delete</button>
+            </form>
+          </div> 
+          <%}%>
+          <form action="/checkout" method="GET">
+            <button type="submit" class="btn btn-outline-dark">Order</button>
+            <input type="hidden" name="_csrf" value="<%= csrf %>">
+
+        </form>
+    </div>   
+    <%}else{%> 
+        
+            <h2 >No Product in Cart</h2>
+
+      
+    <%}%>
+</main>
+
+    
+</body>
+</html>

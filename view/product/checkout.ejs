@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+    <%- include('../layout/head.ejs') %>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <%- include('../layout/navbar.ejs') %>
+<main>
+       <div class="container">
+        <h3> hey <%= user%></h3>
+        <h4>U have to pay: <%= totalSum%></h4>
+        <button id="pay" type="submit" class="btn btn-outline-dark"><i class="fab fa-stripe"></i></button>
+        <script src="https://js.stripe.com/v3/"></script>
+        <script>
+            var stripe = Stripe('pk_test_sVBYTv4BKDGkOwEvVQA3qGCs004lVFfZwf');
+            let paybtn=document.getElementById('pay')
+            paybtn.addEventListener('click',()=>{
+                stripe.redirectToCheckout({
+                    sessionId:'<%= sessionid%>'
+                })
+            })
+        </script>
+       </div>
+        
+</main>    
+</body>
+</html>

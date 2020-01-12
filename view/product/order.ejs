@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+    <%- include('../layout/head.ejs') %>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <%- include('../layout/navbar.ejs') %>
+<main>
+    
+    <div class="container">
+        <% if (orders.length <= 0) { %>
+            <h1>Nothing there!</h1>
+        <% } else { %>
+            <ul >
+                <% orders.forEach(order => { %>
+                    <li >
+                        <h1>Order - # <%= order._id %></h1>
+                        <ul >
+                            <% order.products.forEach(p => { %>
+                                <li ><%= p.product.title %> (<%= p.quantity %>)</li>
+                            <% }); %>
+                        </ul>
+                    </li>
+                <% }); %>
+            </ul>
+            <% } %>
+    </div>   
+
+</main>
+
+    
+</body>
+</html>

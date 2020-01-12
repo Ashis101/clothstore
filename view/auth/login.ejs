@@ -1,0 +1,36 @@
+<%- include('../layout/head.ejs')%>
+</head>
+<body>
+    <%- include('../layout/navbar.ejs') %>
+    <div class="container" style="width: 40rem;" >
+      <% if(error.length > 0 ) {%>
+      <div class="alert alert-dark" role="alert">
+        <%= error %>
+      </div>
+      <%}%>
+        <form action="/login" method="POST" novalidate>
+            <div class="form-group">
+              <label for="exampleInputEmail1">Email address</label>
+              <input type="email" class="form-control" name="email" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter email">
+              <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>
+            </div>
+            <div class="form-group">
+              <label for="exampleInputPassword1">Password</label>
+              <input type="password" class="form-control" name="password" id="exampleInputPassword1" placeholder="Password">
+            </div>
+            <button type="submit" class="btn btn-primary">Login</button>
+            <input type="hidden" name="_csrf" value="<%= csrf %>">
+          </form>
+
+          <div >
+              <small class="form-text text-muted">Forget Your Password</small> &nbsp;&nbsp; <a style="align-content: center;" href="/reset" >Reset Password</a>
+               
+          </div>
+           
+         
+    
+    </div>
+
+
+</body>
+</html>

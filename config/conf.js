@@ -1,0 +1,9 @@
+module.exports={
+    mongoUri:{
+        db:'mongodb+srv://noder:nodejs@cluster0-1wmiy.mongodb.net/shopping?retryWrites=true&w=majority'
+    },
+    email:{
+        user:'ashisbanerjee3256@gmail.com',
+        pass:'Bugcrowed123'
+    }
+}

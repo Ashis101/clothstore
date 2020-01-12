@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<%- include('../layout/head.ejs') %>
+</head>
+<body>
+<%- include('../layout/navbar.ejs') %>
+<main>
+  <% if(data.length > 0){%>
+       <div class="container">
+         <div class="row">
+          <% for(let x of data){%>
+          <div class="col-md-6">
+            <div class="card-inline">
+                <div class="card" style="width: 30rem;">
+                    <img class="card-img-top" src="<%= x.image %>" alt="Card image cap">
+                    <div class="card-body">
+                      <h5 class="card-title"><b> <%= x.title%>  </b></h5>
+                      <p class="card-text"> <%= x.price%>  </p>
+                      <p class="card-text"> <%= x.description%>   </p>
+                      <a href="/edit/<%= x.id %>" class="btn btn-outline-secondary">Edit</a><br>
+                      <form action="/delete" method="POST">
+                        <button type="submit" class="btn btn-outline-danger"> Delete </button>
+                        <input type="hidden" name="_csrf" value="<%= csrf %>">
+                      </form>
+                     
+
+                    </div>
+                  </div>
+                 
+            </div>
+          </div>
+          <%}%>
+        </div>
+
+       </div>
+       <% } %>
+      </main>
+</body>
+</html>

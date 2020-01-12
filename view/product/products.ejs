@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<%- include('../layout/head.ejs') %>
+<style>
+.card {
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+    max-width: 300px;
+    margin: auto;
+    text-align: center;
+    font-family: arial;
+  }
+  
+  .price {
+    color: grey;
+    font-size: 22px;
+  }
+  
+  .card button {
+    border: none;
+    outline: 0;
+    padding: 12px;
+    color: white;
+    background-color: #000;
+    text-align: center;
+    cursor: pointer;
+    width: 100%;
+    font-size: 18px;
+  }
+  
+  .card button:hover {
+    opacity: 0.7;
+  }
+
+  .pagi{
+    text-align: center;
+  }
+  .pagi{
+    text-decoration:none;
+    color: seagreen;
+    padding: 0.5rem;
+    border: 1px solid grey;
+    margin:0 1rem
+    
+  }
+  .pagi a:hover,
+  .pagi a:active{
+    background-color: seagreen;
+    color: seashell;
+  }
+  
+</style>
+</head>
+<body>
+<%- include('../layout/navbar.ejs') %>
+<main>
+    <% if(data.length > 0 ) {%>
+       <div class="container">
+         <div class="row">
+        <% for(let x of data) {%>
+          <div class="col-md-6">
+            <div class="card-inline">
+               
+                  <div class="card">
+                    <img src="<%= x.image %>" alt="Denim Jeans" style="width:100%">
+                    <h1><%= x.title%></h1>
+                    <p class="price"><%= x.price%></p>
+                    <p><%= x.description%></p>
+                    <form action="/cart" method="POST">
+                      <p><button type="submit">Add to Cart</button></p>                     
+                      <input type="hidden" name="productId" value="<%= x._id %>">
+                      <input type="hidden" name="_csrf" value="<%= csrf %>">
+                  </form>
+                    
+                  </div> 
+            </div>
+          </div>
+       <%}%>
+        </div>
+        <div>
+          <br>
+          <br>
+          <hr>
+          <section>
+            <%if(currentpage != 1){%>
+            <a class='pagi' href="?page=1">1</a>
+            <%}%>
+            <a class='pagi' href="?page=<%= currentpage %>"><%= currentpage %></a>
+            <%if(hasnextpage){%>
+            <a class="pagi" href="?page=<%=nextpage%>"><%=nextpage%></a>
+            <%}%>
+            <%if(lastpage !== currentpage && nextpage !== lastpage){%>
+              <a class="pagi" href="?page=<%=lastpage%>"><%=lastpage%></a>
+            <%}%>
+  
+          </section>
+        </div>
+       </div>
+    <%}%>
+</main>
+</body>
+</html>

@@ -1,0 +1,54 @@
+<script src="https://kit.fontawesome.com/54d247ea84.js" crossorigin="anonymous"></script>
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+    <a class="navbar-brand" href="#">Cloth Store</a>
+<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarText" aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
+<span class="navbar-toggler-icon"></span>
+</button>
+<div class="collapse navbar-collapse" id="navbarText">
+<ul class="navbar-nav mr-auto " style="justify-content: center;">
+  <li class="nav-item active">
+    <a class="nav-link" href="/">Home  <span class="sr-only">(current)</span></a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="/items"><i class="fab fa-product-hunt"></i> All Item</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="/cart"><i class="fas fa-shopping-cart"></i> MyCart</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="/orders">MyOrder</a>
+  </li>
+  <% if(isadmin === 'admin') {%>
+    <li class="nav-item">
+        <a class="nav-link" href='/addproduct'>Add Item</a>
+    </li>
+    <li class="nav-item">
+        <a class="nav-link" href="/addedproduct">Added Item</a>
+      </li> 
+ <%}%>
+  <% if(!login) {%>
+  <li>
+  <a class="nav-link" href="/login"><i class="fas fa-sign-in-alt"></i>login</a>
+  </li> 
+  <li class="nav-item">
+    <a class="nav-link" href="/signup"><i class="fas fa-user-plus"></i>signup</a>
+  </li>
+  <%} else{ %>
+    <li class="nav-item">
+      <a class="nav-link" ><i class="far fa-user"></i> <%= name %></a>
+    </li>
+  <li class="nav-item">
+    <form action="/logout" method="post">
+      <li class="nav-item">
+        <button type="submit"  class="btn btn-dark">logout</button>
+        <input type="hidden" name="_csrf" value="<%= csrf %>">
+
+      </li>
+      </form>
+  <%}%>
+  
+</ul>
+    </div>
+
+
+</nav>
